@@ -42,9 +42,9 @@ void empty_board(Board *self) {
 }
 void _set_back_rank(Board *self, enum PieceColor color) {
     int y = color ? 7 : 0;
-    char back_rank[] = "RHBQKBHR";
+    #define BACK_RANK "RHBQKBHR"
     for (int x=0; x<BOARD_WIDTH; x++) {
-        (*self)[y][x] = (struct Piece) { back_rank[x], color };
+        (*self)[y][x] = (struct Piece) { BACK_RANK[x], color };
     }
 }
 void _set_pawns(Board *self, enum PieceColor color) {
@@ -83,5 +83,4 @@ int main() {
     set_default(&test_board);
     // test_board[0][0] = (struct Piece) { King, White };
     print_board(test_board);
-    printf("Hello, World!\n");
 }

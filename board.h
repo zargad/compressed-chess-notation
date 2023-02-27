@@ -18,6 +18,7 @@ void empty_region(Board *self, struct Region region);
 
 void empty_board(Board *self);
 
+/*
 void empty_middle(Board *self);
 
 void set_pawns(Board *self, enum PieceColor color);
@@ -25,7 +26,7 @@ void set_pawns(Board *self, enum PieceColor color);
 void set_back_rank(Board *self, enum PieceColor color);
 
 void set_color(Board *self, enum PieceColor color);
-
+*/
 
 void set_default(Board *self);
 

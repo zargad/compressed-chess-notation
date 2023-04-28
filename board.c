@@ -28,11 +28,11 @@ struct Piece get_piece(Board self, struct PiecePosition position)
 
 bool is_valid_position(struct PiecePosition position)
 {
-    return 0 <= position.x < BOARD_WIDTH && 0 <= position.y < BOARD_HEGIHT
+    return 0 <= position.x < BOARD_WIDTH && 0 <= position.y < BOARD_HEIGHT;
 }
 
 
-inline void empty_region(Board *self, struct Region region) 
+void empty_region(Board *self, struct Region region) 
 {
     fill_region(self, region, PIECE_EMPTY); 
 }

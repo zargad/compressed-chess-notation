@@ -30,7 +30,7 @@ bool add_legal_move(struct Moves *self, Board board, struct PiecePosition destin
 }
 #define ADD_LEGAL_MOVE() add_legal_move(self, board, position)
 
-void add_legal_capture(struct Moves *self, Board board, enum PieceColor current_color, struct PiecePosition destination_position) 
+bool add_legal_capture(struct Moves *self, Board board, enum PieceColor current_color, struct PiecePosition destination_position) 
 {
     if (!is_valid_position(destination_position)) {
         return false;
@@ -122,7 +122,7 @@ void init_straight_moves(struct Moves *self, Board board, struct PiecePosition p
 }
 
 
-void init_straight_moves(struct Moves *self, Board board, struct PiecePosition position, enum PieceColor color)  
+void init_diagonal_moves(struct Moves *self, Board board, struct PiecePosition position, enum PieceColor color)  
 {
     int i;
     i = 0;

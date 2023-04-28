@@ -5,11 +5,6 @@
 #include "board.h"
 #include "moves.h"
 
-
-
-
-
-
 int main()
 {
 	Board test_board;
@@ -18,4 +13,5 @@ int main()
 	print_board(test_board);
     struct PiecePosition temp = get_piece_position(test_board, 1, Black);
     print_position(temp);
+    printf("\n");
 }

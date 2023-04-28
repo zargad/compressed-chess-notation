@@ -2,6 +2,7 @@
 #define BOARD_H
 
 #include <stdio.h>
+#include <stdbool.h>
 #include "utils.h"
 #include "piece.h"
 
@@ -25,7 +26,13 @@ struct Piece get_piece(Board self, struct PiecePosition position)
 }
 
 
-void empty_region(Board *self, struct Region region) 
+bool is_valid_position(struct PiecePosition position)
+{
+    return 0 <= position.x < BOARD_WIDTH && 0 <= position.y < BOARD_HEGIHT
+}
+
+
+inline void empty_region(Board *self, struct Region region) 
 {
     fill_region(self, region, PIECE_EMPTY); 
 }

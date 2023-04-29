@@ -78,6 +78,47 @@ void set_default(Board *self)
 	set_color(self, White);
 }
 
+
+int get_piece_index(Board self, struct PiecePosition position)
+{
+    struct Piece piece = get_piece(self, position);
+    if (piece.type == Empty) {
+        return -1;
+    }
+    enum PieceColor color = piece.color;
+    int index = 0;
+    struct Piece current_piece;
+    for (int y = 0; y < BOARD_HEIGHT; y++) {
+        for (int x = 0; x < BOARD_WIDTH; x++) {
+            current_piece = self[y][x];
+            if (y == position.y && x == position.x) {
+                return index;
+            } else if (current_piece.type != Empty && current_piece.color == color) {
+                index++;
+            }
+        }
+    }
+    return -1;
+}
+
+struct PiecePosition get_piece_position(Board self, int index, enum PieceColor color)
+{
+    struct Piece current_piece;
+    for (int y = 0; y < BOARD_HEIGHT; y++) {
+        for (int x = 0; x < BOARD_WIDTH; x++) {
+            current_piece = self[y][x];
+            if (current_piece.type != Empty && current_piece.color == color) {
+                if (index == 0) {
+                    return (struct PiecePosition) {x, y};
+                }
+                index--;
+            }
+        }
+    }
+    return INVALID_POSITION;
+}
+
+
 int print_board(Board board)
 {
 	for (int y = BOARD_HEIGHT - 1; y >= 0; y--) {

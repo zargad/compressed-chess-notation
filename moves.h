@@ -26,6 +26,7 @@ int get_piece_index(Board self, struct PiecePosition position);
 
 struct PiecePosition get_piece_position(Board self, int index, enum PieceColor color);
 
+
 void print_moves(struct Moves *self);
 
 #endif

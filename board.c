@@ -28,7 +28,7 @@ struct Piece get_piece(Board self, struct PiecePosition position)
 
 bool is_valid_position(struct PiecePosition position)
 {
-    return 0 <= position.x < BOARD_WIDTH && 0 <= position.y < BOARD_HEIGHT;
+    return (0 <= position.x && position.x < BOARD_WIDTH) && (0 <= position.y && position.y < BOARD_HEIGHT);
 }
 
 

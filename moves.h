@@ -4,7 +4,10 @@
 #include "piece.h"
 #include "board.h"
 
-struct Moves;
+struct Moves {
+    struct PiecePosition data[24];
+    size_t size;
+};
 
 void add_move(struct Moves *self, struct PiecePosition move);
 
@@ -22,5 +25,7 @@ void init_moves(struct Moves *self, Board board, struct PiecePosition position);
 int get_piece_index(Board self, struct PiecePosition position);
 
 struct PiecePosition get_piece_position(Board self, int index, enum PieceColor color);
+
+void print_moves(struct Moves *self);
 
 #endif

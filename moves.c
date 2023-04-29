@@ -36,7 +36,7 @@ bool add_legal_capture(struct Moves *self, Board board, enum PieceColor current_
         return false;
     }
     struct Piece destination = get_piece(board, destination_position);
-    if (destination.type == Empty || destination.color != current_color) {
+    if (destination.type != Empty && destination.color != current_color) {
         add_move(self, destination_position);
         return true;
     }
@@ -48,15 +48,15 @@ bool add_legal_capture(struct Moves *self, Board board, enum PieceColor current_
 
 void init_pawn_moves(struct Moves *self, Board board, struct PiecePosition position, enum PieceColor color)  
 {
-    position.y += color ? -1 : 1;
+    position.y += color == Black ? -1 : 1;
     ADD_LEGAL_MOVE();
     position.x -= 1;
     ADD_LEGAL_CAPTURE();
     position.x += 2;
     ADD_LEGAL_CAPTURE();
     position.x -= 1;
-    if (color && position.y == 1 || !color && position.y == 6) {
-        position.y += color ? -1 : 1;
+    if (color == White && position.y == 2 || color == Black && position.y == 5) {
+        position.y += color == Black ? -1 : 1;
         ADD_LEGAL_MOVE();
     }
 }
@@ -67,24 +67,32 @@ void init_knight_moves(struct Moves *self, Board board, struct PiecePosition pos
     position.x += 1;
     position.y += 2;
     ADD_LEGAL_CAPTURE();
+    ADD_LEGAL_MOVE();
     position.x += 1;
     position.y -= 1;
     ADD_LEGAL_CAPTURE();
+    ADD_LEGAL_MOVE();
     position.y -= 2;
     ADD_LEGAL_CAPTURE();
+    ADD_LEGAL_MOVE();
     position.x -= 1;
     position.y -= 1;
     ADD_LEGAL_CAPTURE();
+    ADD_LEGAL_MOVE();
     position.x -= 2;
     ADD_LEGAL_CAPTURE();
+    ADD_LEGAL_MOVE();
     position.x -= 1;
     position.y += 1;
     ADD_LEGAL_CAPTURE();
+    ADD_LEGAL_MOVE();
     position.y += 2;
     ADD_LEGAL_CAPTURE();
+    ADD_LEGAL_MOVE();
     position.x += 1;
     position.y += 1;
     ADD_LEGAL_CAPTURE();
+    ADD_LEGAL_MOVE();
 }
 
 
@@ -168,22 +176,31 @@ void init_king_moves(struct Moves *self, Board board, struct PiecePosition posit
 {
     position.y += 1;
     ADD_LEGAL_CAPTURE();
+    ADD_LEGAL_MOVE();
     position.x += 1;
     ADD_LEGAL_CAPTURE();
+    ADD_LEGAL_MOVE();
     position.y -= 1;
     ADD_LEGAL_CAPTURE();
+    ADD_LEGAL_MOVE();
     position.y -= 1;
     ADD_LEGAL_CAPTURE();
+    ADD_LEGAL_MOVE();
     position.x -= 1;
     ADD_LEGAL_CAPTURE();
+    ADD_LEGAL_MOVE();
     position.x -= 1;
     ADD_LEGAL_CAPTURE();
+    ADD_LEGAL_MOVE();
     position.y += 1;
     ADD_LEGAL_CAPTURE();
+    ADD_LEGAL_MOVE();
     position.y += 1;
     ADD_LEGAL_CAPTURE();
+    ADD_LEGAL_MOVE();
     position.x += 1;
     ADD_LEGAL_CAPTURE();
+    ADD_LEGAL_MOVE();
 }
 
 
@@ -252,4 +269,14 @@ struct PiecePosition get_piece_position(Board self, int index, enum PieceColor c
         }
     }
     return INVALID_POSITION;
+}
+
+
+void print_moves(struct Moves *self) 
+{
+    for (int i = 0; i < self->size; i++) {
+        print_position(self->data[i]);
+        printf(",");
+    }
+    printf("\n");
 }

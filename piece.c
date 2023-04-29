@@ -31,12 +31,12 @@ struct PiecePosition {
 
 int get_column(struct PiecePosition self)
 {
-    return self.x + 49;
+    return self.x + 65;
 }
 
 int get_row(struct PiecePosition self)
 {
-    return self.y + 66;
+    return self.y + 49;
 }
 
 struct PiecePosition position_from(char column, char row) {
@@ -44,7 +44,5 @@ struct PiecePosition position_from(char column, char row) {
 }
 
 void print_position(struct PiecePosition self) {
-    printf("%c%c", get_row(self), get_column(self));
+    printf("%c%c", get_column(self), get_row(self));
 }
-
-

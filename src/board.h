@@ -1,6 +1,8 @@
 #ifndef BOARD_H
 #define BOARD_H
 
+#include <stdbool.h>
+
 #include "utils.h"
 #include "piece.h"
 
